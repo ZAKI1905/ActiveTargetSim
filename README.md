@@ -44,7 +44,7 @@ The simulation tracks:
 
 ![Detector Geometry](figs/muon_target_geom.png)
 
-**Figure 1**: _Perspective view of the detector geometry in the ActiveTargetSim simulation. The five grey slabs represent tungsten converter layers used for muon production and stopping analysis. The thin brown slab upstream (rightmost slab in image) is the primary graphite target where incoming protons interact to produce secondary particles including muons. The visualization omits the world volume for clarity._
+**Figure 1**: _Perspective view of the detector geometry in the ActiveTargetSim simulation. The five grey slabs represent tungsten converter layers used for muon production and stopping analysis. The thin brown slab upstream (rightmost slab in image) is the primary graphite target where incoming protons interact to produce secondary particles including muons._
 
 ---
 
