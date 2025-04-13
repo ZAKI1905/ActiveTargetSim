@@ -1,0 +1,13 @@
+/vis/open OGL
+/run/initialize
+/vis/viewer/set/viewpointThetaPhi 90 0
+/vis/viewer/set/style surface
+/vis/viewer/set/background white
+/vis/drawVolume
+/vis/scene/add/volume
+/vis/scene/add/axes 0 0 -0.08 0.05
+/vis/sceneHandler/attach
+/vis/viewer/flush
+/vis/viewer/set/autoRefresh true
+/vis/enable
+/vis/viewer/save muon_target_geom.png

@@ -1,0 +1,25 @@
+/vis/open OGL
+/vis/viewer/set/viewpointThetaPhi 90 0
+/vis/drawVolume
+/vis/scene/add/axes 0 0 0 20 cm
+/vis/scene/add/volume
+/vis/sceneHandler/attach
+/vis/modeling/trajectories/create/drawByParticleID
+/vis/modeling/trajectories/drawByParticleID-0/set gamma green
+/vis/modeling/trajectories/drawByParticleID-0/set proton red
+/vis/modeling/trajectories/drawByParticleID-0/set e- blue
+/vis/modeling/trajectories/drawByParticleID-0/set neutron yellow
+/vis/modeling/trajectories/drawByParticleID-0/set mu- magenta
+/vis/modeling/trajectories/drawByParticleID-0/set mu+ cyan
+/vis/scene/endOfEventAction accumulate 50
+/run/initialize
+/vis/scene/add/trajectories smooth
+/vis/scene/add/extent
+/vis/scene/add/hits
+/vis/scene/endOfEventAction accumulate
+/vis/enable
+/tracking/storeTrajectory 1
+/run/beamOn 1000
+/vis/viewer/set/autoRefresh true
+/tracking/storeTrajectory 1
+/vis/scene/add/trajectories smooth

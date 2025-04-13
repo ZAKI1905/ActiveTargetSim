@@ -1,0 +1,78 @@
+{
+	"folders": [
+	  {
+		"path": "."  // main project folder
+	  }
+	],
+	"settings": {
+	  // Use clangd or MSVC/Clang for C++ IntelliSense
+	  "C_Cpp.default.compilerPath": "/usr/bin/clang++",
+	  "C_Cpp.default.cppStandard": "c++17",
+  
+	  // Formatting style (optional)
+	  "editor.formatOnSave": true,
+	  "C_Cpp.clang_format_fallbackStyle": "Google",
+  
+	  // Make terminal start in build folder
+	  "terminal.integrated.cwd": "${workspaceFolder}/build",
+  
+	  // Automatically run cmake
+	  "cmake.configureOnOpen": true,
+	  "cmake.sourceDirectory": "${workspaceFolder}",
+	  "cmake.buildDirectory": "${workspaceFolder}/build",
+  
+	  // Optional: Enable include path browsing
+	  "C_Cpp.default.includePath": [
+		"${workspaceFolder}/**",
+		"/Users/keeper/geant4/install/include/Geant4"
+	],
+	"files.associations": {
+		"*.icc": "cpp",
+		"__bit_reference": "cpp",
+		"__node_handle": "cpp",
+		"atomic": "cpp",
+		"bitset": "cpp",
+		"chrono": "cpp",
+		"cstddef": "cpp",
+		"deque": "cpp",
+		"__memory": "cpp",
+		"filesystem": "cpp",
+		"limits": "cpp",
+		"locale": "cpp",
+		"optional": "cpp",
+		"random": "cpp",
+		"ratio": "cpp",
+		"regex": "cpp",
+		"system_error": "cpp",
+		"tuple": "cpp",
+		"type_traits": "cpp",
+		"vector": "cpp",
+		"array": "cpp",
+		"c1d": "cpp",
+		"dps": "cpp",
+		"qrot": "cpp",
+		"rotf": "cpp",
+		"vec2": "cpp",
+		"vec3": "cpp",
+		"vec4": "cpp",
+		"leaf": "cpp",
+		"bsf": "cpp",
+		"colormap": "cpp",
+		"f2plot": "cpp",
+		"senum": "cpp",
+		"value": "cpp",
+		"ntuple": "cpp",
+		"element": "cpp",
+		"convert_histograms.C": "cpp",
+		"data_axis": "cpp"
+	}
+	},
+	"extensions": {
+	  "recommendations": [
+		"ms-vscode.cpptools",
+		"ms-vscode.cmake-tools",
+		"twxs.cmake",
+		"xaver.clang-format"
+	  ]
+	}
+  }

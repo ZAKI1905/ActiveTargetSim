@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/Users/keeper/geant4/install/**",
+                "/usr/local/include",
+                "/opt/homebrew/include",
+                "/opt/local/include/root6"
+              ],
+    "browse": 
+        {
+            "path": [
+                "${workspaceFolder}/**",
+                "/Users/keeper/geant4/**"
+                ]
+        },
+            "defines": 
+            [    
+                "G4MULTITHREADED",
+                "G4USE_STD11"
+            ],
+            "cStandard": "c17",
+            "intelliSenseMode": "macos-clang-arm64"
+        }
+    ],
+    "version": 4
+}

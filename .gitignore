@@ -1,0 +1,13 @@
+build/
+*.root
+*.pdf
+*.png
+*.dat
+*.log
+*.DS_Store
+*.swp
+*.aux
+*.out
+*.toc
+*.dvi
+*.gz

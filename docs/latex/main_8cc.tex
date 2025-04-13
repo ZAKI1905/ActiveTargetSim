@@ -1,0 +1,57 @@
+\hypertarget{main_8cc}{}\doxysection{src/main.cc File Reference}
+\label{main_8cc}\index{src/main.cc@{src/main.cc}}
+{\ttfamily \#include \char`\"{}G4\+Run\+Manager.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}G4\+UIExecutive.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}G4\+UImanager.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}G4\+Vis\+Executive.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}QGSP\+\_\+\+BERT.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Detector\+Construction.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Primary\+Generator\+Action.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Run\+Action.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Stepping\+Action.\+hh\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Tracking\+Action.\+hh\char`\"{}}\newline
+Include dependency graph for main.\+cc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cc__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cc_a3c04138a5bfe5d72780bb7e82a18e627}{main}} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Entry point of the Active\+Target\+Sim simulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cc_a3c04138a5bfe5d72780bb7e82a18e627}\label{main_8cc_a3c04138a5bfe5d72780bb7e82a18e627}} 
+\index{main.cc@{main.cc}!main@{main}}
+\index{main@{main}!main.cc@{main.cc}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$$\ast$}]{argv }\end{DoxyParamCaption})}
+
+
+
+Entry point of the Active\+Target\+Sim simulation. 
+
+Handles the full setup of the simulation, including\+:
+\begin{DoxyItemize}
+\item Geometry and detector configuration
+\item Physics processes
+\item Primary particle generation
+\item Visualization engine
+\item Interactive or batch execution
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Argument count \\
+\hline
+{\em argv} & Argument values (used to check for interactive mode) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Exit code 
+\end{DoxyReturn}
