@@ -26,17 +26,20 @@ The simulation tracks:
 
 ---
 
-## Features
+## Key Features
 
-- Modular geometry configuration (select via `SetDetectorType`)
-- Uniform magnetic field applied along the beam axis
-- ROOT histogram output for:
-  - Muon creation energy
-  - Muon stopping depth \( z \)
-  - Muon radial stop distance \( r \)
-  - Target layer index where muon stops
-- Clear tracking of particle trajectories using G4SmoothTrajectory
-- Debug messages for muon creation and stopping events
+- Configurable geometry:
+  - Thin graphite target for primary proton collisions
+  - Stacked tungsten converter layers
+  - Alternate configurations include carbon stacks and graphite-tungsten sandwich targets
+- Uniform magnetic field aligned with beam axis (z-direction)
+- ROOT-based histogramming of muon kinematic and spatial observables:
+  - Creation energy
+  - Stopping z-position
+  - Radial stop distance
+  - Target layer index of final stop
+- G4SmoothTrajectory-based visualization
+- Debug-mode output for muon creation/stopping diagnostics
 
 ---
 
@@ -105,7 +108,23 @@ If Doxygen is installed, you can generate HTML and PDF documentation with:
 doxygen Doxyfile
 ```
 
-Output will be available in the doc/html and doc/latex directories.
+Output will be available in the doc/html and doc/latex directories:
+
+    •	HTML output: doc/html/index.html
+    •	LaTeX output: doc/latex/refman.pdf
+
+Make sure Graphviz is installed for diagram support.
+
+---
+
+## Physics Motivation
+
+This simulation explores the production and moderation of muons via primary proton beams. A graphite target initiates pion production, and pions decay into muons. High-Z materials like tungsten are used to efficiently capture and stop muons due to their short radiation length and high density. The configuration also allows insertion of magnetic fields to steer particles, paving the way for future optimization or staged moderation.
+
+Though designed generically, the setup is relevant to R&D efforts in muon-related technologies such as:
+• Muon beam production
+• Particle stopping optimization
+• Muon-catalyzed fusion system design (future use)
 
 ---
 
