@@ -1,9 +1,20 @@
-/vis/open OGL
+# Choose graphics system
+/vis/open OGL  # or use OGLSX if needed
+
+# Create the scene and attach the viewer
+/vis/scene/create
+/vis/viewer/create
 /vis/viewer/set/viewpointThetaPhi 90 0
+
+# Add geometry and helpful visuals
 /vis/drawVolume
-/vis/scene/add/axes 0 0 0 20 cm
 /vis/scene/add/volume
+/vis/scene/add/axes 0 0 0 20 cm
+/vis/scene/add/trajectories smooth
+/vis/scene/add/hits
 /vis/sceneHandler/attach
+
+# Configure particle color coding
 /vis/modeling/trajectories/create/drawByParticleID
 /vis/modeling/trajectories/drawByParticleID-0/set gamma green
 /vis/modeling/trajectories/drawByParticleID-0/set proton red
@@ -11,15 +22,15 @@
 /vis/modeling/trajectories/drawByParticleID-0/set neutron yellow
 /vis/modeling/trajectories/drawByParticleID-0/set mu- magenta
 /vis/modeling/trajectories/drawByParticleID-0/set mu+ cyan
-/vis/scene/endOfEventAction accumulate 50
-/run/initialize
-/vis/scene/add/trajectories smooth
-/vis/scene/add/extent
-/vis/scene/add/hits
-/vis/scene/endOfEventAction accumulate
-/vis/enable
+
+# Keep only events explicitly flagged (e.g., with SetKeepEvent(true))
+/vis/drawOnlyToBeKeptEvents true
+/vis/scene/endOfEventAction refresh 
+# /vis/scene/endOfEventAction accumulate 100
 /tracking/storeTrajectory 1
-/run/beamOn 1000
 /vis/viewer/set/autoRefresh true
-/tracking/storeTrajectory 1
-/vis/scene/add/trajectories smooth
+/vis/enable
+
+# Run the simulation
+/run/initialize
+/run/beamOn 50000

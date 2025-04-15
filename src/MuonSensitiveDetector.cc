@@ -32,6 +32,7 @@ MuonSensitiveDetector::MuonSensitiveDetector(const G4String &name)
 	// No initialization required at this stage
 }
 
+// ----------------------------------------------------------------------------
 /**
  * @brief Destructor for MuonSensitiveDetector.
  */
@@ -43,7 +44,6 @@ MuonSensitiveDetector::~MuonSensitiveDetector()
 // ============================================================================
 // ProcessHits
 // ============================================================================
-
 /**
  * @brief Processes energy deposition (hits) in the scoring volume.
  *

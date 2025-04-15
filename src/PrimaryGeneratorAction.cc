@@ -22,7 +22,6 @@
 // ============================================================================
 // Constructor / Destructor
 // ============================================================================
-
 /**
  * @brief Constructor
  *
@@ -51,6 +50,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 	fParticleGun->SetParticleEnergy(1.0 * GeV);
 }
 
+// ----------------------------------------------------------------------------
 /**
  * @brief Destructor
  *

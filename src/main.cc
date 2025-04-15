@@ -17,6 +17,7 @@
 #include "QGSP_BERT.hh"
 
 #include "DetectorConstruction.hh"
+#include "EventAction.hh"
 #include "PrimaryGeneratorAction.hh"
 #include "RunAction.hh"
 #include "SteppingAction.hh"
@@ -57,7 +58,7 @@ int main(int argc, char **argv)
 	// Detector Setup (includes magnetic field and scoring volumes)
 	// =========================================================================
 	auto *detector = new DetectorConstruction();
-	detector->SetDetectorType("muonTarget"); // Choose detector geometry variant (e.g., carbonStack, alternatingLayers, muonTarget)
+	detector->SetDetectorType("openMuonTarget"); // Choose detector geometry variant (e.g., carbonStack, alternatingLayers, muonTarget)
 	runManager->SetUserInitialization(detector);
 
 	// =========================================================================
@@ -69,6 +70,8 @@ int main(int argc, char **argv)
 	// =========================================================================
 	// Register User Actions
 	// =========================================================================
+	runManager->SetUserAction(new EventAction());
+
 	// Primary generator (defines the particle beam)
 	runManager->SetUserAction(new PrimaryGeneratorAction());
 

@@ -64,8 +64,53 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	 */
 	size_t GetNumTargetVolumes() const;
 
+	/**
+	 * @brief Returns the Z-position of the front face of the D-T gas region.
+	 *
+	 * This marks the beginning (lowest Z value) of the D-T fusion volume,
+	 * used for histogram range and stopping diagnostics.
+	 *
+	 * @return Z-position [G4double] in global coordinates.
+	 */
+	G4double GetDTZStart() const { return fDTZStart; }
+
+	/**
+	 * @brief Returns the Z-position of the back face of the D-T gas region.
+	 *
+	 * This marks the end (highest Z value) of the D-T fusion volume,
+	 * used for bounding region in scoring and plotting.
+	 *
+	 * @return Z-position [G4double] in global coordinates.
+	 */
+	G4double GetDTZEnd() const { return fDTZEnd; }
+
+	/**
+	 * @brief Returns the Z-position of the center of the D-T gas region.
+	 *
+	 * Useful for visualization, debugging, or positioning detectors relative
+	 * to the D-T gas volume.
+	 *
+	 * @return Z-position [G4double] in global coordinates.
+	 */
+	G4double GetDTZCenter() const { return fDTZCenter; }
+
   private:
 	// ==== Private Members ====
+
+	/**
+	 * @brief Z-start of D-T gas region (front face).
+	 */
+	G4double fDTZStart = 0.;
+
+	/**
+	 * @brief Z-end of D-T gas region (back face).
+	 */
+	G4double fDTZEnd = 0.;
+
+	/**
+	 * @brief Z-center of D-T gas region (midpoint).
+	 */
+	G4double fDTZCenter = 0.;
 
 	G4LogicalVolume *fScoringVolume = nullptr;
 	G4String fDetectorType = "carbonStack"; // default
@@ -94,12 +139,26 @@ class DetectorConstruction : public G4VUserDetectorConstruction
 	G4VPhysicalVolume *ConstructAlternatingLayers();
 
 	/**
-	 * @brief Constructs a muon target configuration.
-	 * @return Pointer to the constructed physical volume for the muon target.
-	 * This method defines a detector layout for analyzing muon production and stopping behavior.
-	 * Includes optional magnetic field configuration for trajectory steering and spatial diagnostics.
+	 * @brief Constructs the compact muon target geometry with a graphite target and stacked tungsten converters.
+	 *
+	 * This configuration simulates a high-density design where the proton beam impacts a graphite target
+	 * followed by closely packed tungsten converter layers. Useful for benchmarking pion production and
+	 * in-place muon generation in a confined geometry. Includes optional D-T gas region with local magnetic field.
+	 *
+	 * @return Pointer to the constructed physical volume.
 	 */
-	G4VPhysicalVolume *ConstructMuonTarget();
+	G4VPhysicalVolume *ConstructStackedTargetGeometry();
+
+	/**
+	 * @brief Constructs an open muon target geometry with interleaved converter layers and air gaps.
+	 *
+	 * This configuration simulates a low-density, decay-friendly geometry where the proton beam hits a graphite
+	 * target, followed by spaced tungsten plates allowing pion decay and improved muon escape. Designed to increase
+	 * muon throughput to the D-T fusion region for muon-catalyzed fusion studies.
+	 *
+	 * @return Pointer to the constructed physical volume.
+	 */
+	G4VPhysicalVolume *ConstructOpenMuonTarget();
 };
 // ============================================================================
 

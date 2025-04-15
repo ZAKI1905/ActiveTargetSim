@@ -11,6 +11,7 @@
 // ============================================================================
 
 #include "RunAction.hh"
+#include "DetectorConstruction.hh"
 #include "G4AnalysisManager.hh"
 #include "G4Run.hh"
 #include "G4RunManager.hh"
@@ -66,11 +67,21 @@ void RunAction::BeginOfRunAction(const G4Run *)
 	analysisManager->SetDefaultFileType("root"); // or "csv", "hdf5", "xml"
 	analysisManager->OpenFile("muon_output");
 
-	// Create histograms for muon diagnostics
-	analysisManager->CreateH1("MuonEnergy", "Muon Creation Energy (MeV)", 100, 0., 200.);		  // Initial kinetic energy
-	analysisManager->CreateH1("MuonStopZ", "Muon Stopping Z Position (mm)", 100, -150., 150.);	  // Longitudinal stop position
-	analysisManager->CreateH1("MuonStopTarget", "Muon Stopped in Target Layer (int)", 10, 0, 10); // Target index
-	analysisManager->CreateH1("MuonStopRadius", "Muon radial stop distance [mm]", 100, 0., 50.0); // sqrt(x^2 + y^2) at stop
+	// Create histograms for muon diagnostics (only if they haven't been already)
+	if (!analysisManager->GetH1(0)) // Check if ID 0 is already created
+	{
+		analysisManager->CreateH1("MuonEnergy", "Muon Creation Energy (MeV)", 100, 0., 200.);
+		analysisManager->CreateH1("MuonStopZ", "Muon Stopping Z Position (mm)", 100, -150., 150.);
+		analysisManager->CreateH1("MuonStopTarget", "Muon Stopped in Target Layer (int)", 10, 0, 10);
+		analysisManager->CreateH1("MuonStopRadius", "Muon radial stop distance [mm]", 100, 0., 50.0);
+
+		auto detector = static_cast<const DetectorConstruction *>(G4RunManager::GetRunManager()->GetUserDetectorConstruction());
+		G4double zStart = detector->GetDTZStart();
+		G4double zEnd = detector->GetDTZEnd();
+
+		analysisManager->CreateH1("muonStopZ_DT", "Z of Muon Stop in D-T", 100, zStart, zEnd);
+		analysisManager->CreateH1("muonStopR_DT", "Radial R of Muon Stop in D-T", 100, 0, 10 * cm);
+	}
 }
 
 /**

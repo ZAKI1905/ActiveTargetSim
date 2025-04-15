@@ -34,6 +34,7 @@ add_executable(active_target_sim
     src/RunAction.cc
     src/SteppingAction.cc
     src/TrackingAction.cc
+    src/EventAction.cc
 )
 
 # Include your headers.
