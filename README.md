@@ -9,37 +9,34 @@
 
 ## Overview
 
-**ActiveTargetSim** is a Geant4-based simulation toolkit designed to study the generation, transport, and stopping behavior of muons in a layered target geometry. The simulation enables controlled testing of muon-producing targets and potential moderation schemes, supporting future work in muon-catalyzed fusion and related areas of applied particle physics.
+**ActiveTargetSim** is a Geant4-based simulation toolkit designed to study the generation, moderation, and stopping behavior of muons in layered target geometries. The simulation provides a testbed for understanding muon production and transport in dense materials and supports future R&D in muon-catalyzed fusion and applied particle beam technologies.
 
-The code allows for flexible target geometries, including:
+Key capabilities include:
 
-- **Thin graphite targets** for primary proton interactions
-- **Tungsten converter stacks** to produce and absorb muons
-- Optional **carbon stack** and **alternating moderator-absorber configurations**
+- Configurable converter stacks with varying material thicknesses
+- Longitudinal and radial muon diagnostics
+- Target-layer indexing
+- Visualization and filtering of muon-containing events only
 
-The simulation tracks:
-
-- Muon creation energy
-- Stopping location (in space and in material)
-- Radial displacement from beam axis
-- Target layer index of final muon stop
+Recent updates add a **D-T gas region** for potential fusion capture, along with **event-level filtering** to selectively visualize events with muon production.
 
 ---
 
 ## Key Features
 
-- Configurable geometry:
-  - Thin graphite target for primary proton collisions
-  - Stacked tungsten converter layers
-  - Alternate configurations include carbon stacks and graphite-tungsten sandwich targets
-- Uniform magnetic field aligned with beam axis (z-direction)
-- ROOT-based histogramming of muon kinematic and spatial observables:
-  - Creation energy
-  - Stopping z-position
-  - Radial stop distance
-  - Target layer index of final stop
-- G4SmoothTrajectory-based visualization
-- Debug-mode output for muon creation/stopping diagnostics
+- **Modular detector geometry:**
+  - Thin graphite target for initial proton collisions
+  - Gradient-thickness tungsten converter stack (e.g., 2.0 mm to 0.2 mm)
+  - Optional D-T gas capture region placed downstream
+- **Muon diagnostics with ROOT histograms:**
+  - Muon creation energy
+  - Longitudinal and radial stopping locations
+  - Target volume index
+  - D-T region stop statistics
+- **Localized uniform magnetic field** applied in D-T region
+- **G4SmoothTrajectory-based visualization** for particle tracking
+- **Selective event retention** for GUI: only muon-producing events are visualized
+- Fully commented source with **Doxygen support**
 
 ---
 
@@ -47,38 +44,34 @@ The simulation tracks:
 
 ![Detector Geometry](figs/muon_target_geom.png)
 
-**Figure 1**: _Perspective view of the detector geometry in the ActiveTargetSim simulation. The five grey slabs represent tungsten converter layers used for muon production and stopping analysis. The thin brown slab upstream (rightmost slab in image) is the primary graphite target where incoming protons interact to produce secondary particles including muons._
+**Figure 1**: _Perspective view of the simulated detector. The upstream graphite target produces pions, which decay into muons. Muons traverse a gradient stack of tungsten converters, and surviving particles may enter a D-T gas region under a magnetic field for potential capture._
 
 ---
 
 ## Output Histograms
 
-Generated using ROOT via Geant4’s G4AnalysisManager. Example plots below were created from 1000 events.
+ROOT histograms are automatically generated for each run. Histograms include:
 
-| Histogram              | Description                                         |
-| ---------------------- | --------------------------------------------------- |
-| **MuonEnergy.pdf**     | Distribution of muon creation energies (in MeV)     |
-| **MuonStopZ.pdf**      | Longitudinal stopping positions of muons (in mm)    |
-| **MuonStopRadius.pdf** | Radial stopping distance from beam axis (in mm)     |
-| **MuonStopTarget.pdf** | Histogram of which target index the muon stopped in |
-
-Example:
-
-![Muon Creation Energy](Hists/MuonEnergy.png)
-
-**Figure 2**: Histogram of muon creation energies.
+| Histogram              | Description                                   |
+| ---------------------- | --------------------------------------------- |
+| **MuonEnergy.pdf**     | Distribution of muon creation energies (MeV)  |
+| **MuonStopZ.pdf**      | Z-position of muon stopping                   |
+| **MuonStopRadius.pdf** | Radial distance from beamline at stop         |
+| **MuonStopTarget.pdf** | Target volume index where muon stopped        |
+| **muonStopZ_DT.pdf**   | Z-position of muons stopped inside D-T region |
+| **muonStopR_DT.pdf**   | Radial stop distance inside D-T gas region    |
 
 ---
 
 ## How to Build
-
-Ensure that you have Geant4 (with data libraries and environment variables properly set) and optionally Graphviz (for Doxygen diagrams) installed.
 
 ```bash
 mkdir build && cd build
 cmake ..
 make
 ```
+
+Make sure Geant4 (with environment variables) is properly configured.
 
 ---
 
@@ -90,7 +83,7 @@ make
 ./active_target_sim
 ```
 
-The simulation uses the vis.mac file to render geometry and track visuals.
+This uses `vis.mac` to render the detector and muon tracks.
 
 ### Batch Mode
 
@@ -98,42 +91,54 @@ The simulation uses the vis.mac file to render geometry and track visuals.
 ./active_target_sim run.mac
 ```
 
+Output is stored in `muon_output.root` by default.
+
 ---
 
 ## Generating Documentation
 
-If Doxygen is installed, you can generate HTML and PDF documentation with:
+If Doxygen is installed, you can generate full HTML and PDF documentation:
 
 ```bash
 doxygen Doxyfile
 ```
 
-Output will be available in the doc/html and doc/latex directories:
-
-    •	HTML output: doc/html/index.html
-    •	LaTeX output: doc/latex/refman.pdf
-
-Make sure Graphviz is installed for diagram support.
+- HTML: `doc/html/index.html`
+- PDF: `doc/latex/refman.pdf`
 
 ---
 
 ## Physics Motivation
 
-This simulation explores the production and moderation of muons via primary proton beams. A graphite target initiates pion production, and pions decay into muons. High-Z materials like tungsten are used to efficiently capture and stop muons due to their short radiation length and high density. The configuration also allows insertion of magnetic fields to steer particles, paving the way for future optimization or staged moderation.
+Muon production begins with proton–nucleus collisions in the upstream graphite target, generating pions that decay in flight. The design uses high-density tungsten converters to moderate and stop muons.
 
-Though designed generically, the setup is relevant to R&D efforts in muon-related technologies such as:
-• Muon beam production
-• Particle stopping optimization
-• Muon-catalyzed fusion system design (future use)
+New features include a **D-T gas region** with a localized magnetic field to explore the possibility of capturing muons in a fusion-relevant context. While full modeling of fusion reactions is outside current scope, this setup opens the door to downstream integration with fusion reaction models.
+
+The simulation is well-suited for:
+
+- Muon beamline studies
+- Target design optimization
+- Precursor designs for muon-catalyzed fusion systems
 
 ---
 
-## Future Directions
+## Current Limitations and Future Directions
 
-This simulation serves as a foundation for exploring detector layouts and beamline optimization in muon-related applications. While the code is not specific to muon-catalyzed fusion, its modularity supports extensions toward that direction.
+- **Muon filtering logic is complete**, but visualization of sequential events (flipping one-by-one) is not supported in Geant4 GUI by default. Current viewer accumulates all kept events.
+- **Pion absorption** vs. **decay-in-flight** remains a key design tradeoff. Many pions decay inside the tungsten converter layers, limiting escape probability.
+- **D-T fusion interaction modeling** is **not yet implemented**. However, the current geometry and field setup support future addition of cross-section-based reaction tracking or yield estimation.
+
+### To-Do / Next Steps
+
+- Implement angular collimation or magnetic steering before D-T region
+- Investigate pion decay lengths vs. absorption lengths in tungsten
+- Extend detector with scoring planes or time-of-flight windows
+- Add secondary reaction modeling (e.g., fusion triggers)
 
 ---
 
 ## License
 
-This project is open for academic and research use. If you use this code in your work, please cite this repository or contact the author.
+This project is open for academic and research use. Please cite or link to this repository if you use or modify the code.
+
+---
