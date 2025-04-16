@@ -124,7 +124,6 @@ The simulation is well-suited for:
 
 ## Current Limitations and Future Directions
 
-- **Muon filtering logic is complete**, but visualization of sequential events (flipping one-by-one) is not supported in Geant4 GUI by default. Current viewer accumulates all kept events.
 - **Pion absorption** vs. **decay-in-flight** remains a key design tradeoff. Many pions decay inside the tungsten converter layers, limiting escape probability.
 - **D-T fusion interaction modeling** is **not yet implemented**. However, the current geometry and field setup support future addition of cross-section-based reaction tracking or yield estimation.
 
