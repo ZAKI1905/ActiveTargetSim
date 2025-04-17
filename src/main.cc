@@ -101,9 +101,9 @@ int main(int argc, char **argv)
 	if (ui)
 	{
 		// ----- Interactive Mode -----
-		UImanager->ApplyCommand("/control/execute vis.mac"); // Load viewer & draw geometry
-		// UImanager->ApplyCommand("/control/execute vis_geometry.mac"); // Load viewer & draw geometry
-		ui->SessionStart(); // Start command-line session
+		// UImanager->ApplyCommand("/control/execute vis.mac"); // Load viewer & draw geometry
+		UImanager->ApplyCommand("/control/execute vis_geometry.mac"); // Load viewer & draw geometry
+		ui->SessionStart();											  // Start command-line session
 		delete ui;
 	}
 	else
